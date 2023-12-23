@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Tickets {
+    id               String    @id @default(auto()) @map("_id") @db.ObjectId
+    timestamp        DateTime  @default(now())
+    paymentID        String    
+    paymentSecret    String   
+    paymentStatus    String    
+    paymentAmount    Int       
+    paymentCurrency  String    
+    buyerName        String    
+    ticketData       String
+    buyerEmail       String    
+}
