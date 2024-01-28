@@ -1,0 +1,17 @@
+import bcrypt from "bcryptjs"
+
+export const hashPassword = async (password: string) => {
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    return hashedPassword;
+};
+
+export const isPasswordCorrect = async (plainPassword: string, hashedPassword: string) => {
+    return await bcrypt.compare(plainPassword, hashedPassword)
+}
+
+export const formatPrice = (amount: number) => {
+    const formattedAmount = (amount / 100).toFixed(2); // Przeniesienie dwóch miejsc po przecinku
+    return `${formattedAmount}`;
+};

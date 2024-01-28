@@ -1,0 +1,93 @@
+.itemContent {
+    padding: 20px 30px;
+
+    h1.title {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 2.4rem;
+        margin-bottom: 20px;
+    }
+
+    .dashMain {
+        margin-top: 4px;
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+
+            .card {
+                border: none;
+                height: 300px;
+
+                .cardImg {
+                    object-fit: cover;
+                    width: 100%;
+                    max-width: unset;
+                }
+
+                .text {
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: .9rem;
+                    line-height: 1.2rem;
+                }
+            }
+        }
+    }
+
+    .productDetailsPage {
+        display: flex;
+        margin-top: 10px;
+        flex-flow: row;
+        gap: 10px;
+
+        .left {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .right {
+            flex: 0 1 350px;
+            min-width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .payment_details {
+                padding: 10px;
+
+                .payment_details_item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 14px 0;
+
+                    .payment_details_item_value {
+                        font-weight: 600;
+                    }
+
+                    .payment_details_item_label {
+                        font-weight: 400;
+                        color: #d7d7d7;
+                        font-size: .9rem;
+                    }
+                }
+
+                hr.divider {
+                    color: hsl(var(--nextui-divider) / var(--nextui-divider-opacity, var(--tw-bg-opacity)));;
+                }
+
+                &.nomargin {
+                    padding: 10px;
+
+                    .payment_details_item {
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
