@@ -91,31 +91,13 @@ const PaymentConfirmEmail = ({
                             <b>Payment status:</b> {paymentStatus}
                         </Text>
                         <Hr className="my-8" />
-                        <Row className="my-2">
-                            <Column className="w-1/2">
-                                <Text className="text-sm">
-                                    <b>Ticket name</b>
-                                </Text>
-                            </Column>
-                            <Column className="w-1/2">
-                                <Text className="text-sm">
-                                    <b>Quantity</b>
-                                </Text>
-                            </Column>
-                        </Row>
+                        <Text className="text-sm">
+                            <b>Tickets:</b>
+                        </Text>
                         {tickets.map((ticket) => (
-                            <Row className="my-0" key={ticket.name}>
-                                <Column className="w-1/2">
-                                    <Text className="text-sm">
-                                        {ticket.name}
-                                    </Text>
-                                </Column>
-                                <Column className="w-1/2">
-                                    <Text className="text-sm">
-                                        {ticket.quantity}
-                                    </Text>
-                                </Column>
-                            </Row>
+                            <Text key={ticket.name} className="text-sm">
+                                <b>{ticket.name}:</b> x{ticket.quantity}
+                            </Text>
                         ))}
                         <Hr className="my-8" />
                         <Text className="text-sm">
