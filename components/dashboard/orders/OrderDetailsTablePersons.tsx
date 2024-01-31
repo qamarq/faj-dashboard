@@ -79,7 +79,7 @@ export default function OrderDetailsTablePersons({ ticketsData }: { ticketsData:
             </TableHeader>
             <TableBody emptyContent={"No rows to display."} items={ticketsData}>
                 {(item) => (
-                    <TableRow key={item.id.toString()}>
+                    <TableRow key={item.id}>
                         {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                     </TableRow>
                 )}

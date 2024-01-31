@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import styles from "@/styles/DashboardLayout.module.scss"
-import { Button, Divider, Input, User } from "@nextui-org/react";
+import { Button, Divider, Input, Link, User } from "@nextui-org/react";
 import { signOut } from '@/auth';
 import { LogOutIcon, SearchIcon, SettingsIcon } from 'lucide-react';
 
@@ -45,9 +45,11 @@ export default async function RootLayout({
                     <Input size='sm' className={styles.searchInput} type="text" startContent={<SearchIcon size={16} />} placeholder='Serach for anything' />
                     <div className={styles.buttons}>
                         <ThemeSwitcher />
-                        <Button variant='flat' isIconOnly aria-label="Settings">
-                            <SettingsIcon size={16} />
-                        </Button> 
+                        <Link href='/settings'>
+                            <Button variant='flat' isIconOnly aria-label="Settings">
+                                <SettingsIcon size={16} />
+                            </Button> 
+                        </Link>
                         <LogoutButton>
                             <Button variant='flat' type='submit' isIconOnly aria-label="Log out">
                                 <LogOutIcon size={16} />

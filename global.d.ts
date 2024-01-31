@@ -43,7 +43,7 @@ interface TicketsResult {
 type TicketType = Record<string, {
     title: string;
     id: string;
-    ticketID: string;
+    ticketId: string;
     name: string;
     surname: string;
     email: string;
@@ -60,7 +60,7 @@ type TicketType = Record<string, {
 type TicketData = {
     title: string;
     id: string;
-    ticketID: string;
+    ticketId: string;
     name: string;
     surname: string;
     email: string;
@@ -72,6 +72,7 @@ type TicketData = {
     postcode?: string;
     country?: string;
     diet: string;
+    vat: string;
 }
 
 type PaymentStatus = "requires_confirmation" | "requires_action" | "processing" | "succeeded" | "requires_payment_method" | "canceled" | "incomplete";

@@ -20,4 +20,12 @@ export const formatPrice = (amount: number) => {
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
-  }
+}
+
+export const formattedPrice = (price: number) => {
+    const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'EUR',
+    }).format(price);
+    return formatted
+}

@@ -21,12 +21,16 @@ const columns = [
     {
         key: "country",
         label: "COUNTRY",
+    },
+    {
+        key: "vat",
+        label: "VAT NUMBER",
     }
 ];
 
 export default function OrderDetailsTable({ ticketsData, prices, tickets }: { ticketsData: TicketData[], prices: Price[], tickets: Ticket[] }) {
     const renderCell = React.useCallback((order: TicketData, columnKey: React.Key) => {
-        const ticket = tickets.find((ticket) => ticket.id === order.ticketID)
+        const ticket = tickets.find((ticket) => ticket.id === order.ticketId)
         if (!ticket) return null
         const cellValue = order[columnKey as keyof TicketData];
             switch (columnKey) {
@@ -61,6 +65,12 @@ export default function OrderDetailsTable({ ticketsData, prices, tickets }: { ti
                             <p className="text-bold text-sm capitalize">{order.country}</p>
                         </div>
                     );
+                case "vat":
+                    return (
+                        <div className="flex flex-col">
+                            <p className="text-bold text-sm capitalize">{order.vat}</p>
+                        </div>
+                    );
                 default:
                     return cellValue;
             }
@@ -73,7 +83,7 @@ export default function OrderDetailsTable({ ticketsData, prices, tickets }: { ti
             </TableHeader>
             <TableBody emptyContent={"No rows to display."} items={ticketsData}>
                 {(item) => (
-                    <TableRow key={item.id.toString()}>
+                    <TableRow key={item.id}>
                         {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                     </TableRow>
                 )}
