@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import styles from "@/styles/DashboardLayout.module.scss"
 import { Button, Divider, Input, User } from "@nextui-org/react";
-import { getUser } from '@/lib/actions';
 import { signOut } from '@/auth';
 import { LogOutIcon, SearchIcon, SettingsIcon } from 'lucide-react';
 
 import Sidebar from '@/components/dashboard/layout/Sidebar';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import { currentUser } from '@/lib/auth';
+import { notFound } from 'next/navigation';
+import { LogoutButton } from '@/components/auth/logout-button';
 
 export const metadata: Metadata = {
   title: 'FAJ - Dashboard',
@@ -18,7 +20,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-    const user = await getUser();
+    const user = await currentUser();
+    if (!user) return notFound()
 
     return (
         <div className={styles.dashboard_layout}>
@@ -27,7 +30,7 @@ export default async function RootLayout({
                 <div className={styles.head}>
                     <User 
                         className='p-[20px]'  
-                        name={user.username}
+                        name={user.name}
                         description={user.email}
                         avatarProps={{
                             src: "https://i.pravatar.cc/150?img=12"
@@ -45,16 +48,11 @@ export default async function RootLayout({
                         <Button variant='flat' isIconOnly aria-label="Settings">
                             <SettingsIcon size={16} />
                         </Button> 
-                        <form
-                            action={async () => {
-                                'use server';
-                                await signOut();
-                            }}
-                        >
+                        <LogoutButton>
                             <Button variant='flat' type='submit' isIconOnly aria-label="Log out">
                                 <LogOutIcon size={16} />
                             </Button> 
-                        </form>
+                        </LogoutButton>
                     </div>
                 </div>
                 <div className={styles.inner}>

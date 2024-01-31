@@ -1,56 +1,67 @@
-import NextAuth from 'next-auth';
-import { authConfig } from './auth.config';
-import Credentials from 'next-auth/providers/credentials';
-import { z } from 'zod';
-import { prisma } from "@/app/db"
-import { hashPassword, isPasswordCorrect } from './lib/utils';
+import NextAuth from "next-auth"
+import authConfig from "@/auth.config"
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import { prisma } from "@/lib/db"
+import { z } from "zod"
+import { getAccountByUserId } from "./data/account"
+import { getUserById } from "./data/user"
 
-async function getUser(email: string): Promise<User | null> {
-    try {
-        const user = await prisma.users.findUnique({
-            where: {
-                email: email
+export const {
+    handlers: { GET, POST },
+    auth,
+    signIn,
+    signOut,
+    update
+} = NextAuth({
+    pages: {
+        signIn: "/auth/login",
+        error: "/auth/error"
+    },
+    events: {
+        async linkAccount({ user }) {
+            await prisma.user.update({
+                where: { id: user.id },
+                data: { emailVerified: new Date() }
+            })
+        }
+    },
+    callbacks: {
+        async signIn({ user, account }) {
+            if (account?.provider !== "credentials") return true
+
+            const existingUser = await getUserById(user.id)
+            if (!existingUser?.emailVerified) return false
+
+            return true
+        },
+        async session({ session, token }) {
+            if (session.user && token.sub) {
+                session.user.id = token.sub
             }
-        })
-        return user;
-    } catch (error) {
-        console.error('Failed to fetch user:', error);
-        throw new Error('Failed to fetch user.');
-    }
-}
- 
-export const { auth, signIn, signOut } = NextAuth({
+
+            if (session.user) {
+                session.user.isOAuth = token.isOAuth as boolean
+                session.user.image = token.image as string | null | undefined
+            }
+
+            return session
+        },
+        async jwt({ token }) {
+            if (!token.sub) return token
+
+            const user = await getUserById(token.sub)
+            if (!user) return token
+
+            const exisingAccount = await getAccountByUserId(user.id)
+
+            token.name = user.name
+            token.email = user.email
+            token.image = user.image
+            token.isOAuth = !!exisingAccount
+            return token
+        }
+    },
+    adapter: PrismaAdapter(prisma),
+    session: { strategy: "jwt" },
     ...authConfig,
-    providers: [
-        Credentials({
-            async authorize(credentials) {
-                const parsedCredentials = z
-                    .object({ email: z.string().email(), password: z.string().min(6) })
-                    .safeParse(credentials);
-
-                if (parsedCredentials.success) {
-                    const { email, password } = parsedCredentials.data;
-
-                    // await prisma.users.create({
-                    //     data: {
-                    //         email,
-                    //         username: "Kamil Marczak",
-                    //         credentials: undefined,
-                    //         password: await hashPassword(password)
-                    //     }
-                    // })
-
-                    const user = await getUser(email);
-                    if (!user) return null;
-
-                    const passwordsMatch = await isPasswordCorrect(password, user.password);
- 
-                    if (passwordsMatch) return user;
-                }
-            
-                console.log('Invalid credentials');
-                return null;
-            },
-        }),
-    ],
-});
+})

@@ -3,7 +3,7 @@
 import { paymentStatuses } from '@/constants'
 import { Autocomplete, AutocompleteItem, Button } from '@nextui-org/react'
 import { EditIcon } from 'lucide-react'
-import { updatePaymentStatus } from '@/lib/actions'
+import { updatePaymentStatus } from '@/actions/orders'
 import React from 'react'
 
 export default function OrderDetailsEdit({ orderID, paymentStatus }: { orderID: string, paymentStatus: PaymentStatus}) {

@@ -1,4 +1,6 @@
 import bcrypt from "bcryptjs"
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export const hashPassword = async (password: string) => {
     const saltRounds = 10;
@@ -15,3 +17,7 @@ export const formatPrice = (amount: number) => {
     const formattedAmount = (amount / 100).toFixed(2); // Przeniesienie dwóch miejsc po przecinku
     return `${formattedAmount}`;
 };
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs))
+  }

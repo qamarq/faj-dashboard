@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "@/styles/DashboardItem.module.scss"
 import BreadCrumbsComponent from '@/components/BreadCrumbsComponent'
-import { prisma } from '@/app/db'
+import { prisma } from '@/lib/db'
 import { Autocomplete, AutocompleteItem, Button, Card, CardBody, CardHeader, Chip, Divider } from '@nextui-org/react'
 import OrderDetailsTable from '@/components/dashboard/orders/OrderDetailsTable'
 import { Tickets } from '@prisma/client'
@@ -39,6 +39,10 @@ export default async function OrderPage({
     const details = await getDetails(params.id) as { order: Tickets, shopData: TicketsResult }
     const ticketsData = JSON.parse(details.order.ticketData) as TicketType[]
     const outputArray = Object.values(ticketsData).map((item) => ({ ...item }));
+
+    console.log("Details", details)
+    console.log("Tickets data", ticketsData)
+    console.log("Output array", outputArray)
 
     const calculateTotalPrice = () => {
         let totalPrice = 0;

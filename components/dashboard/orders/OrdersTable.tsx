@@ -81,7 +81,7 @@ export default function OrdersTable({ orders }: { orders: Tickets[] }) {
                 case "actions":
                     return (
                         <div className="relative flex items-center gap-2">
-                            <Link href={`/dashboard/orders/${order.id}`} onClick={(e) => e.stopPropagation()}>
+                            <Link href={`/orders/${order.id}`} onClick={(e) => e.stopPropagation()}>
                                 <Tooltip content="Details / Edit order">
                                     <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                                         <EditIcon />
