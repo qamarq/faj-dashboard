@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "@/styles/DashboardItem.module.scss"
-import { prisma } from "@/app/db"
+import { prisma } from "@/lib/db"
 import { Tickets } from '@prisma/client'
 import OrdersTable from '@/components/dashboard/orders/OrdersTable'
 import BreadCrumbsComponent from '@/components/BreadCrumbsComponent'
