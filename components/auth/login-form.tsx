@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form"
 import { FormError } from './form-error';
 import { FormSuccess } from './form-success';
+import SignInWithPasskey from './login-passkey-button';
 
 export default function LoginForm() {
     const searchParams = useSearchParams()
@@ -77,7 +78,7 @@ export default function LoginForm() {
                                     <FormItem>
                                         <FormLabel>Email</FormLabel>
                                         <FormControl>
-                                            <Input {...field} autoComplete='username' disabled={isPending} placeholder='john.doe@example.com' type='email' />
+                                            <Input {...field} autoComplete='username webauthn' disabled={isPending} placeholder='john.doe@example.com' type='email' />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -108,9 +109,7 @@ export default function LoginForm() {
 
                         <Divider className='my-2' />
 
-                        <Button>
-                            Zaloguj się z passkey
-                        </Button>
+                        <SignInWithPasskey />
                     </form>
                 </Form>
             </CardBody>

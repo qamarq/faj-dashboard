@@ -9,10 +9,12 @@ interface LogoutButtonProps {
 export const LogoutButton = ({ children }: LogoutButtonProps) => {
     const onClick = () => {
         logout()
+        console.log("logout")
     }
 
     return (
         <span onClick={onClick} className="cursor-pointer">
+            sieano
             {children}
         </span>
     )

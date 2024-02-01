@@ -42,6 +42,7 @@ export const {
             if (session.user) {
                 session.user.isOAuth = token.isOAuth as boolean
                 session.user.image = token.image as string | null | undefined
+                session.user.passkey = token.passkey as boolean
             }
 
             return session
@@ -57,6 +58,7 @@ export const {
             token.name = user.name
             token.email = user.email
             token.image = user.image
+            token.passkey = user.passkey
             token.isOAuth = !!exisingAccount
             return token
         }
