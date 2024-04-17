@@ -5,10 +5,10 @@ import { getUserByEmail, getUserById } from "./data/user"
 import bcrypt from "bcryptjs"
 import Github from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
-import {
-    tenant,
-  } from "@teamhanko/passkeys-next-auth-provider";
-import { PasskeyProvider } from "./data/passkey-provider"
+// import {
+//     tenant,
+//   } from "@teamhanko/passkeys-next-auth-provider";
+// import { PasskeyProvider } from "./data/passkey-provider"
 // import { prisma } from "./lib/db"
 
 
@@ -43,17 +43,17 @@ export default {
                 return null
             }
         }),
-        PasskeyProvider({
-            tenant: tenant({
-                apiKey: process.env.PASSKEYS_API_KEY!,
-                tenantId: process.env.NEXT_PUBLIC_PASSKEYS_TENANT_ID!,
-            }),
-            async authorize({ userId }) {
-                const user = await getUserById(userId);
-                if (!user) return null;
-                return user;
-            },
-        })
+        // PasskeyProvider({
+        //     tenant: tenant({
+        //         apiKey: process.env.PASSKEYS_API_KEY!,
+        //         tenantId: process.env.NEXT_PUBLIC_PASSKEYS_TENANT_ID!,
+        //     }),
+        //     async authorize({ userId }) {
+        //         const user = await getUserById(userId);
+        //         if (!user) return null;
+        //         return user;
+        //     },
+        // })
         // PasskeyProvider({
         //     tenant: tenant({
         //         apiKey: process.env.PASSKEYS_API_KEY!,

@@ -49,6 +49,7 @@ type TicketType = Record<string, {
     email: string;
     participation: string;
     status: string;
+    price: string;
     affiliation?: string;
     street?: string;
     city?: string;
@@ -66,6 +67,7 @@ type TicketData = {
     email: string;
     participation: string;
     status: string;
+    price: string;
     affiliation?: string;
     street?: string;
     city?: string;
@@ -76,3 +78,5 @@ type TicketData = {
 }
 
 type PaymentStatus = "requires_confirmation" | "requires_action" | "processing" | "succeeded" | "requires_payment_method" | "canceled" | "incomplete";
+
+declare module 'invoice-generator';

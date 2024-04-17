@@ -1,6 +1,6 @@
 "use client"
 
-import { finishServerPasskeyRegistration, getServerPasskeyCredentials, startServerPasskeyRegistration } from '@/lib/passkey';
+// import { finishServerPasskeyRegistration, getServerPasskeyCredentials, startServerPasskeyRegistration } from '@/lib/passkey';
 import {
     create,
     get,
@@ -15,9 +15,9 @@ export default function RegisterNewPasskeyButton() {
 
     async function registerPasskey() {
         setIsPending(true)
-        const createOptions = await startServerPasskeyRegistration();
-        const credential = await create(createOptions as CredentialCreationOptionsJSON);
-        await finishServerPasskeyRegistration(credential);
+        // const createOptions = await startServerPasskeyRegistration();
+        // const credential = await create(createOptions as CredentialCreationOptionsJSON);
+        // await finishServerPasskeyRegistration(credential);
     }
 
     // async function getPasskey() {

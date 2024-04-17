@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@nextui-org/react";
-import { signInWithPasskey } from "@teamhanko/passkeys-next-auth-provider/client";
+// import { signInWithPasskey } from "@teamhanko/passkeys-next-auth-provider/client";
 import { UserCogIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -12,10 +12,10 @@ const SignInWithPasskey = () => {
         <Button 
             onClick={() => {
                 setIsPending(true)
-                signInWithPasskey({ 
-                    tenantId: process.env.NEXT_PUBLIC_PASSKEYS_TENANT_ID!, 
-                    callbackUrl: `${window.location.origin}/` 
-                })
+                // signInWithPasskey({ 
+                //     tenantId: process.env.NEXT_PUBLIC_PASSKEYS_TENANT_ID!, 
+                //     callbackUrl: `${window.location.origin}/` 
+                // })
             }} 
             className="mt-4 w-full" color="default" variant="flat"
             isLoading={isPending}

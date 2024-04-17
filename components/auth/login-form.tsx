@@ -109,7 +109,7 @@ export default function LoginForm() {
 
                         <Divider className='my-2' />
 
-                        <SignInWithPasskey />
+                        {/* <SignInWithPasskey /> */}
                     </form>
                 </Form>
             </CardBody>

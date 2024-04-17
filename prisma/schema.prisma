@@ -21,6 +21,7 @@ model Tickets {
     buyerName        String    
     ticketData       String
     buyerEmail       String    
+    buyerVAT         String?
 }
 
 model Account {

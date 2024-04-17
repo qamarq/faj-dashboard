@@ -1,3 +1,4 @@
+import { makePDF } from '@/actions/invoice'
 import RegisterNewPasskeyButton from '@/components/auth/register-passkey-button'
 import { currentUser } from '@/lib/auth'
 import PaymentConfirmEmail from '@/mails/PaymentConfirm'
@@ -5,11 +6,12 @@ import React from 'react'
 
 export default async function SettingsPage() {
     const user = await currentUser()
+    await makePDF()
     return (
         <div>
             settings
             {JSON.stringify(user)}
-            <RegisterNewPasskeyButton />
+            {/* <RegisterNewPasskeyButton /> */}
         </div>
     )
 }
