@@ -1,4 +1,5 @@
-import HTMLToPDF from 'convert-html-to-pdf';
+// import HTMLToPDF from 'convert-html-to-pdf';
+import pdf from 'html-pdf';
 
 export interface InvoiceOptions {
     seller: {
@@ -142,17 +143,27 @@ async function createInvoice(options: InvoiceOptions) {
     return new Promise<Buffer>(async (resolve, reject) => {
         try {
             const html = getDeliveryHTML(options);
-            const htmlToPDF = new HTMLToPDF(html, {
-                waitForNetworkIdle: true,
-                browserOptions: {
-                    defaultViewport: { width: 1920, height: 1080 },
-                },
-                pdfOptions: { height: 1200, width: 900 },
+            pdf.create(html).toBuffer(function(err, buffer){
+                if (err) {
+                    console.log("ERRORRRR2", err)
+                    reject(err);
+                }
+                resolve(buffer);
             });
+            // const html = getDeliveryHTML(options);
+            // const htmlToPDF = new HTMLToPDF(html, {
+            //     waitForNetworkIdle: true,
+            //     browserOptions: {
+            //         defaultViewport: { width: 1920, height: 1080 },
+            //     },
+            //     pdfOptions: { height: 1200, width: 900 },
+            // });
 
-            const pdf = await htmlToPDF.convert();
-            resolve(pdf);
+            // const pdf = await htmlToPDF.convert();
+            // resolve(pdf);
+
         } catch (err) {
+            console.log("ERRORRRR", err)
             reject(err);
         }
     });

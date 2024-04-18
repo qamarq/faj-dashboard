@@ -17,7 +17,7 @@ const columns = [
 
 export default function ProductsTable({ tickets, prices }: { tickets: Ticket[], prices: Price[] }) {
     const renderCell = React.useCallback((ticket: Ticket, columnKey: React.Key) => {
-        const editLink = `https://dashboard.stripe.com/${process.env.NEXT_PUBLIC_STRIPE_TESTING ? 'test/' : ''}products/${ticket.id}`
+        const editLink = `https://dashboard.stripe.com/${process.env.NEXT_PUBLIC_STRIPE_TESTING == "true" ? 'test/' : ''}products/${ticket.id}`
         const cellValue = ticket[columnKey as keyof Ticket];
             switch (columnKey) {
                 case "id":

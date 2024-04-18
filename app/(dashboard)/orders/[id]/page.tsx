@@ -48,7 +48,7 @@ export default async function OrderPage({
         let totalPrice = 0;
 
         outputArray.map((item) => {
-            const product = details.shopData.products.data.find((product) => product.id === String(item.ticketID));
+            const product = details.shopData.products.data.find((product) => product.id === String(item.ticketId));
             const price = details.shopData.prices.data.find((price) => price.id === product?.default_price);
 
             if (product && price) {
@@ -82,6 +82,7 @@ export default async function OrderPage({
                             <Suspense>
                                 <OrderDetailsTablePersons ticketsData={outputArray as any} />
                             </Suspense>
+                            <pre>{JSON.stringify(outputArray)}</pre>
                         </CardBody>
                     </Card> 
                 </div>

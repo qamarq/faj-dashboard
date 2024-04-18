@@ -15,7 +15,6 @@
     "@hookform/resolvers": "^3.3.4",
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.8.0",
-    "@qamarq/invoice.js": "^0.0.3",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-email/components": "^0.0.14",
@@ -41,6 +40,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/html-pdf": "^3.0.3",
     "@types/node": "^20",
     "@types/randomstring": "^1.1.11",
     "@types/react": "^18",
