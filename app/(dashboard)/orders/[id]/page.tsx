@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import styles from "@/styles/DashboardItem.module.scss"
 import BreadCrumbsComponent from '@/components/BreadCrumbsComponent'
 import { prisma } from '@/lib/db'
@@ -79,7 +79,9 @@ export default async function OrderPage({
                             <h4 className="font-bold text-large">Persons details</h4>
                         </CardHeader>
                         <CardBody>
-                            <OrderDetailsTablePersons ticketsData={outputArray as any} />
+                            <Suspense>
+                                <OrderDetailsTablePersons ticketsData={outputArray as any} />
+                            </Suspense>
                         </CardBody>
                     </Card> 
                 </div>

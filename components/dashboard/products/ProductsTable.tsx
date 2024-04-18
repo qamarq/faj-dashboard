@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip, ChipProps, RadioGroup, Radio} from "@nextui-org/react";
 import { DeleteIcon, EditIcon, EuroIcon, EyeIcon } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
+import Link from 'next/link';
 
 const columns = [
     {name: "NAME", uid: "name"},
@@ -16,6 +17,7 @@ const columns = [
 
 export default function ProductsTable({ tickets, prices }: { tickets: Ticket[], prices: Price[] }) {
     const renderCell = React.useCallback((ticket: Ticket, columnKey: React.Key) => {
+        const editLink = `https://dashboard.stripe.com/${process.env.NEXT_PUBLIC_STRIPE_TESTING ? 'test/' : ''}products/${ticket.id}`
         const cellValue = ticket[columnKey as keyof Ticket];
             switch (columnKey) {
                 case "id":
@@ -55,21 +57,23 @@ export default function ProductsTable({ tickets, prices }: { tickets: Ticket[], 
                 case "actions":
                     return (
                         <div className="relative flex items-center gap-2">
-                            <Tooltip content="Details">
+                            {/* <Tooltip content="Details">
                                 <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                                     <EyeIcon />
                                 </span>
-                            </Tooltip>
-                            <Tooltip content="Edit user">
-                                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                                    <EditIcon />
-                                </span>
-                            </Tooltip>
-                            <Tooltip color="danger" content="Delete user">
+                            </Tooltip> */}
+                            <Link target='_blank' href={editLink}>
+                                <Tooltip content="Edit user">
+                                    <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                                        <EditIcon />
+                                    </span>
+                                </Tooltip>
+                            </Link>
+                            {/* <Tooltip color="danger" content="Delete user">
                                 <span className="text-lg text-danger cursor-pointer active:opacity-50">
                                     <DeleteIcon />
                                 </span>
-                            </Tooltip>
+                            </Tooltip> */}
                         </div>
                     );
                 default:
