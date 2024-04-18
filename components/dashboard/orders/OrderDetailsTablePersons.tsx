@@ -33,9 +33,7 @@ const columns = [
 ];
 
 export default function OrderDetailsTablePersons({ ticketsData }: { ticketsData: TicketData[] }) {
-    console.log(ticketsData)
     const renderCell = React.useCallback((order: TicketData, columnKey: React.Key) => {
-        console.log("rendering cell", order, columnKey)
         const cellValue = order[columnKey as keyof TicketData];
             switch (columnKey) {
                 case "person":

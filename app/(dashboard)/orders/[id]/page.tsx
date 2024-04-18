@@ -73,8 +73,35 @@ export default async function OrderPage({
                         <CardBody>
                             <Suspense>
                                 <OrderDetailsTable ticketsData={outputArray as any} prices={details.shopData.prices.data} tickets={details.shopData.products.data} />
-                                <p>{JSON.stringify(outputArray)}</p>
                             </Suspense>
+                            {/* {outputArray.map((ticket: any) => (
+                                <div key={ticket.id} className='p-3 m-2 border border-slate-700 rounded-lg flex items-center'>
+                                    <div className=''>
+                                        <h1 className='font-semibold'>Name</h1>
+                                        <p className='text-white/50'>{ticket.title} {ticket.name} {ticket.surname}</p>
+                                    </div>
+                                    <span className='min-w-[1px] w-[1px] h-full mx-3 bg-gray-600'></span>
+                                    <div className=''>
+                                        <h1 className='font-semibold'>E-mail address</h1>
+                                        <p className='text-white/50'>{ticket.email}</p>
+                                    </div>
+                                    <span className='min-w-[1px] w-[1px] h-full mx-3 bg-gray-600'></span>
+                                    <div>
+                                        <h1 className='font-semibold'>{ticket.participation}</h1>
+                                        <p className='text-white/50'><span className='font-semibold'>Affilation: </span>{ticket.affiliation}</p>
+                                    </div>
+                                    <span className='min-w-[1px] w-[1px] h-full mx-3 bg-gray-600'></span>
+                                    <div className=''>
+                                        <h1 className='font-semibold'>Address</h1>
+                                        <p className='text-white/50'>{ticket.street}, {ticket.postcode} {ticket.city}, {ticket.country}</p>
+                                    </div>
+                                    <span className='min-w-[1px] w-[1px] h-full mx-3 bg-gray-600'></span>
+                                    <div className=''>
+                                        <h1 className='font-semibold'>Diet</h1>
+                                        <p className='text-white/50'>{ticket.diet}</p>
+                                    </div>
+                                </div>
+                            ))} */}
                         </CardBody>
                     </Card> 
                     <Card>

@@ -26,24 +26,24 @@ const pages = [
         "last": "prices",
         "icon": <BadgeDollarSignIcon size={16} />
     },
-    {
-        "title": "Discounts",
-        "link": "/discounts",
-        "last": "discounts",
-        "icon": <TagIcon size={16} />
-    },
+    // {
+    //     "title": "Discounts",
+    //     "link": "/discounts",
+    //     "last": "discounts",
+    //     "icon": <TagIcon size={16} />
+    // },
     {
         "title": "Tickets orders",
         "link": "/orders",
         "last": "orders",
         "icon": <TicketIcon size={16} />
     },
-    {
-        "title": "Users list",
-        "link": "/users",
-        "last": "users",
-        "icon": <UserIcon size={16} />
-    }
+    // {
+    //     "title": "Users list",
+    //     "link": "/users",
+    //     "last": "users",
+    //     "icon": <UserIcon size={16} />
+    // }
 ]
 
 export default function Sidebar() {
