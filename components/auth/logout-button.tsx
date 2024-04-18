@@ -1,6 +1,7 @@
 "use client"
 
 import { logout } from "@/actions/logout"
+import { Link } from "@nextui-org/react"
 
 interface LogoutButtonProps {
     children?: React.ReactNode
@@ -13,9 +14,8 @@ export const LogoutButton = ({ children }: LogoutButtonProps) => {
     }
 
     return (
-        <span onClick={onClick} className="cursor-pointer">
-            sieano
+        <Link onClick={onClick} className="cursor-pointer">
             {children}
-        </span>
+        </Link>
     )
 }

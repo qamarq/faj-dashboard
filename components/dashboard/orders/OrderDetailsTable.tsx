@@ -30,7 +30,8 @@ const columns = [
 
 export default function OrderDetailsTable({ ticketsData, prices, tickets }: { ticketsData: TicketData[], prices: Price[], tickets: Ticket[] }) {
     const renderCell = React.useCallback((order: TicketData, columnKey: React.Key) => {
-        console.log(order, tickets, prices)
+        console.log("tickets", tickets)
+        console.log("order", order)
         const ticket = tickets.find((ticket) => ticket.id === order.ticketId)
         console.log("ticket", ticket)
         if (!ticket) return null
