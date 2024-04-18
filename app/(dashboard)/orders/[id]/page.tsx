@@ -71,7 +71,10 @@ export default async function OrderPage({
                             <h4 className="font-bold text-large">Tickets details</h4>
                         </CardHeader>
                         <CardBody>
-                            <OrderDetailsTable ticketsData={outputArray as any} prices={details.shopData.prices.data} tickets={details.shopData.products.data} />
+                            <Suspense>
+                                <OrderDetailsTable ticketsData={outputArray as any} prices={details.shopData.prices.data} tickets={details.shopData.products.data} />
+                                <p>{JSON.stringify(outputArray)}</p>
+                            </Suspense>
                         </CardBody>
                     </Card> 
                     <Card>
@@ -82,7 +85,6 @@ export default async function OrderPage({
                             <Suspense>
                                 <OrderDetailsTablePersons ticketsData={outputArray as any} />
                             </Suspense>
-                            <pre>{JSON.stringify(outputArray)}</pre>
                         </CardBody>
                     </Card> 
                 </div>
