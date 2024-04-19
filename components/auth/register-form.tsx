@@ -46,7 +46,7 @@ export default function RegisterForm() {
 
                     if (data?.success) {
                         form.reset()
-                        setSuccess(data.success)
+                        //setSuccess(data.success)
                     }
                 }) 
         })
