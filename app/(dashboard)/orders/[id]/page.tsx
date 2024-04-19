@@ -10,6 +10,7 @@ import { paymentStatuses, statusColorMap } from '@/constants'
 import { EditIcon, EuroIcon } from 'lucide-react'
 import { formatPrice } from '@/lib/utils'
 import OrderDetailsEdit from '@/components/dashboard/orders/OrderDetailsEdit'
+import DownloadInvoiceBtn from '../_components/DownloadInvoiceBtn'
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -40,9 +41,9 @@ export default async function OrderPage({
     const ticketsData = JSON.parse(details.order.ticketData) as TicketType[]
     const outputArray = Object.values(ticketsData).map((item) => ({ ...item }));
 
-    console.log("Details", details)
-    console.log("Tickets data", ticketsData)
-    console.log("Output array", outputArray)
+    // console.log("Details", details)
+    // console.log("Tickets data", ticketsData)
+    // console.log("Output array", outputArray)
 
     const calculateTotalPrice = () => {
         let totalPrice = 0;
@@ -145,6 +146,10 @@ export default async function OrderPage({
                                 <div className={styles.payment_details_item}>
                                     <p className={styles.payment_details_item_label}>Payment time</p>
                                     <p className={styles.payment_details_item_value}>{details.order.timestamp.toLocaleTimeString("pl-PL", { timeStyle: "short" })}</p>
+                                </div>
+
+                                <div className='mt-2'>
+                                    <DownloadInvoiceBtn orderId={details.order.id} />
                                 </div>
                             </div>
                         </CardBody>
